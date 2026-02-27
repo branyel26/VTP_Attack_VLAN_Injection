@@ -14,7 +14,8 @@ Este proyecto demuestra un ataque de **VTP (VLAN Trunking Protocol) Attack** par
 |-------------|--------------|---------|
 | **Ubuntu (Atacante)** | `10.14.89.5` | Estación de Ataque |
 | **Kali (Víctima)** | `10.14.89.4` | Objetivo / Víctima |
-| **Switch** | `10.14.89.1` | Nodo de Red (Víctima de VTP) |
+| **Router** | `10.14.89.1` | Gateway de la red |
+| **Switch** | N/A | Nodo de Red - Víctima de VTP (Capa 2) |
 
 - **Segmento de Red:** 10.14.89.0/26 (Rango útil: .1 a .62)
 - **Dominio VTP:** `branyel.local`
