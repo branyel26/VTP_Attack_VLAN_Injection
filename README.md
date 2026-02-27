@@ -1,5 +1,9 @@
 # VTP Attack - VLAN Injection
 
+## Objetivo del Script
+
+Crear la VLAN 10 de forma remota en la base de datos del switch explotando el protocolo VTP, o eliminar todas las VLANs para causar denegación de servicio.
+
 ## Descripción
 
 Este proyecto demuestra un ataque de **VTP (VLAN Trunking Protocol) Attack** para inyectar o eliminar VLANs en la base de datos de un switch. El ataque explota la sincronización automática de VTP entre switches para modificar la configuración de VLANs en toda la red.
@@ -19,6 +23,26 @@ Este proyecto demuestra un ataque de **VTP (VLAN Trunking Protocol) Attack** par
 
 - **Segmento de Red:** 10.14.89.0/26 (Rango útil: .1 a .62)
 - **Dominio VTP:** `branyel.local`
+- **VLAN Inyectada:** VLAN 10 (VLAN10)
+
+## Capturas de Pantalla
+
+> Las capturas demuestran la ejecución exitosa del ataque en el laboratorio.
+
+| Captura | Descripción |
+|---------|-------------|
+| ![Topología](Topologia_GNS3.png) | Topología de red en GNS3 |
+
+## Parámetros del Script
+
+| Parámetro | Valor | Descripción |
+|-----------|-------|-------------|
+| `interfaz` | `ens3` | Interfaz de red del atacante |
+| `ataque_tipo` | `1` o `2` | 1 = Borrar VLANs, 2 = Agregar VLAN |
+| `dst` | `01:00:0c:cc:cc:cc` | Dirección multicast de Cisco |
+| `Domain` | `branyel.local` | Dominio VTP objetivo |
+| `VLAN ID` | `10` | ID de la VLAN a inyectar |
+| `VLAN Name` | `VLAN10` | Nombre de la VLAN |
 
 ## ¿Qué es VTP?
 
@@ -38,11 +62,16 @@ Este ataque requiere que primero se haya establecido un **enlace Trunk** con el 
 
 ## Requisitos
 
+### Software
 - Python 3.x
 - Scapy (`pip install scapy`)
-- Yersinia (herramienta de ataques L2)
+- **Yersinia** (herramienta de ataques L2)
 - Permisos de superusuario (root)
-- Enlace Trunk establecido previamente
+
+### Red
+- Enlace Trunk establecido previamente (mediante DTP Attack)
+- Switch en modo VTP Server o Client
+- Conocer el dominio VTP
 
 ## Instalación
 
